@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdj.springboot_demo.dao.mapper.MusicInfoMapperFy">
+
+    <select id="countByName" parameterType="java.lang.String" resultType="java.lang.Integer">
+      SELECT count(1) FROM music_info WHERE music_name = #{name}
+  </select>
+
+    <select id="selectAll" resultType="com.zdj.springboot_demo.dao.domain.MusicInfoPo">
+      SELECT * FROM music_info
+  </select>
+    <insert id="insert" parameterType="com.zdj.springboot_demo.dao.domain.MusicInfoPo">
+        insert into music_info (singer_name,music_size,music_name)values (#{singerName},#{musicSize},#{musicName})
+    </insert>
+</mapper>
