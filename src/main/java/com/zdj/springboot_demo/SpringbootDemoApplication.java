@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
@@ -19,15 +20,17 @@ import javax.persistence.Entity;
 @MapperScan("com.zdj.springboot_demo.dao.mapper")
 @EnableCaching
 @EnableAdminServer
+//启动定时任务
+@EnableScheduling
 public class SpringbootDemoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringbootDemoApplication.class, args);
     }
-/*    *//**
+    /**
      * dev 环境加载
-     *//*
-    @Profile("dev")
+     */
+/*     @Profile("dev")
     @Configuration
     public static class SecurityPermitAllConfig extends WebSecurityConfigurerAdapter {
         @Override
@@ -37,7 +40,7 @@ public class SpringbootDemoApplication {
         }
     }
 
-    *//**
+   *//**
      * prod 环境加载
      *//*
     @Profile("prod")
