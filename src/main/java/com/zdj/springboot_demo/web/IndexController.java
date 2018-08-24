@@ -23,7 +23,6 @@ public class IndexController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
     @RequestMapping("/show")
-    @ResponseBody
     public String getIndex() {
         return "index";
     }

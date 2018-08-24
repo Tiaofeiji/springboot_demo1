@@ -1,7 +1,5 @@
 package com.zdj.springboot_demo;
 
-import de.codecentric.boot.admin.server.config.AdminServerProperties;
-import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,18 +8,16 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 import javax.persistence.Entity;
 
 @SpringBootApplication
 @MapperScan("com.zdj.springboot_demo.dao.mapper")
 @EnableCaching
-@EnableAdminServer
+//admin
+//@EnableAdminServer
 //启动定时任务
-@EnableScheduling
+//@EnableScheduling
 public class SpringbootDemoApplication {
 
     public static void main(String[] args) {
