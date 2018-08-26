@@ -3,11 +3,13 @@ package com.zdj.springboot_demo.web;
 import com.zdj.springboot_demo.dao.domain.MusicInfoPo;
 import com.zdj.springboot_demo.dao.domain.MusicInfo;
 import com.zdj.springboot_demo.dao.mapper.MusicRepository;
+import com.zdj.springboot_demo.exception.CustomException;
 import com.zdj.springboot_demo.service.MusicInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -59,5 +61,14 @@ public class IndexController {
     public MusicInfo getMusicInfoByname(@RequestParam(name="name") String musicname) {
         MusicInfo musicInfo = musicInfoService.getMusicInfoByname(musicname);
         return musicInfo;
+    }
+    @RequestMapping("/test")
+    @ResponseBody
+    public String test(Integer num) {
+        if (num == null) {
+            throw new CustomException(400, "num不能为空");
+        }
+        int i = 10 / num;
+        return "result:" + i;
     }
 }
