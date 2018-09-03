@@ -1,21 +1,26 @@
 package com.zdj.springboot_demo.web;
 
+import com.zdj.springboot_demo.dao.domain.Book;
 import com.zdj.springboot_demo.dao.domain.MusicInfoPo;
 import com.zdj.springboot_demo.dao.domain.MusicInfo;
 import com.zdj.springboot_demo.dao.mapper.MusicRepository;
 import com.zdj.springboot_demo.exception.CustomException;
 import com.zdj.springboot_demo.service.MusicInfoService;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
+@Validated
 @Controller
 public class IndexController {
     @Autowired
@@ -70,5 +75,16 @@ public class IndexController {
         }
         int i = 10 / num;
         return "result:" + i;
+    }
+    @GetMapping("/test2")
+    @ResponseBody
+    public String test2(@NotBlank(message = "name 不能为空") @Length(min = 2, max = 10, message = "name 长度必须在 {min} - {max} 之间") String name) {
+        return "success";
+    }
+
+    @GetMapping("/test3")
+    @ResponseBody
+    public String test3(@Validated Book book) {
+        return "success";
     }
 }
