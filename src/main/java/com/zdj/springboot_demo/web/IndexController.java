@@ -5,6 +5,7 @@ import com.zdj.springboot_demo.dao.domain.MusicInfoPo;
 import com.zdj.springboot_demo.dao.domain.MusicInfo;
 import com.zdj.springboot_demo.dao.mapper.MusicRepository;
 import com.zdj.springboot_demo.exception.CustomException;
+import com.zdj.springboot_demo.groups.Groups;
 import com.zdj.springboot_demo.service.MusicInfoService;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,5 +87,17 @@ public class IndexController {
     @ResponseBody
     public String test3(@Validated Book book) {
         return "success";
+    }
+
+    @GetMapping("/insertBook")
+    @ResponseBody
+    public String insert(@Validated(value = Groups.Default.class) Book book) {
+        return "insert";
+    }
+
+    @GetMapping("/updateBook")
+    @ResponseBody
+    public String update(@Validated(value = {Groups.Default.class, Groups.Update.class}) Book book) {
+        return "update";
     }
 }
