@@ -34,6 +34,10 @@ public class IndexController {
     public String getIndex() {
         return "index";
     }
+    @RequestMapping("/chatroom")
+    public String chatroom() {
+        return "chatroom";
+    }
     @RequestMapping("/music")
     @ResponseBody
     public List<MusicInfo> getMusicInfo() {
